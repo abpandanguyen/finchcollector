@@ -5,12 +5,14 @@
 
 {% for finch in finches %}
   <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ finch.commonName }}</span>
-      <p>Species: {{ finch.species }}</p>
-      <p>Description: {{ finch.description }}</p>
-      <p>IOC Sequence: {{ finch.iocSequence }}</p>
-    </div>
+    <a href="{% url 'detail' finch.id %}"
+      <div class="card-content">
+        <span class="card-title">{{ finch.commonName }}</span>
+        <p>Species: {{ finch.species }}</p>
+        <p>Description: {{ finch.description }}</p>
+        <p>IOC Sequence: {{ finch.iocSequence }}</p>
+      </div>
+    </a>
   </div>
 {% endfor %}
 
