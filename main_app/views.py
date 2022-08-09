@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Finch
+from .forms import SightingForm
 
 from django.http import HttpResponse
 
@@ -34,4 +35,18 @@ def finches_index(request):
 
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
-    return render(request, 'finches/detail.html', { 'finch': finch })
+    sighting_form = SightingForm()
+    return render(request, 'finches/detail.html', {
+        'finch': finch, 'sighting_form': sighting_form 
+    })
+
+def add_sighting(request, finch_id):
+    form = SightingForm(request.POST)
+    #validate the form
+    if form.is_valid():
+        # dont save the form to database until
+        # has finch_id assigned
+        new_sighting = form.save(commit=False)
+        new_sighting.finch_id = finch_id
+        new_sighting.save()
+    return redirect('detail', finch_id=finch_id)

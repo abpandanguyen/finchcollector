@@ -12,5 +12,6 @@ urlpatterns = [
     # routes for update/delete
     path('finches/<int:pk>/update/', views.FinchUpdate.as_view(), name='finches_update'),
     path('finches/<int:pk>/delete/', views.FinchDelete.as_view(), name='finches_delete'),
+    path('finches/<int:finch_id>/add_sighting/', views.add_sighting, name='add_sighting'),
 ]   
 
