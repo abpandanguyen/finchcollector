@@ -26,7 +26,7 @@ class Finch(models.Model):
         return f'{self.commonName} ({self.id})'
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'cat_id': self.id})
+        return reverse('detail', kwargs={'finch_id': self.id})
 
 class Sighting(models.Model):
     date = models.DateField('sighting date')
